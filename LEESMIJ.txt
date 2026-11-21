@@ -1,20 +1,28 @@
-Machtigingsbeheer – kosteloos testpakket
-=======================================
+Machtigingsbeheer – bijgewerkte testversie v4
+=========================================
 
-Dit pakket is voorbereid om gratis statisch te hosten, bijvoorbeeld met GitHub Pages.
-Het is nog NIET online gepubliceerd; er is nog geen openbare webadres.
+Upload alle bestanden uit deze map naar de hoofdmap (root) van je GitHub-repository en kies bij overschrijven voor bevestigen:
+- index.html
+- manifest.webmanifest
+- sw.js
+- LEESMIJ.txt
 
-Publiceren vereist een eigen gratis hostingaccount en een eenmalige upload/instelling.
-Ik kan niet inloggen of een account namens jou aanmaken.
+Controleer daarna GitHub Pages. Open de website in Safari en ververs de pagina. Als de oude versie blijft staan, sluit de website/app volledig en open opnieuw. De service worker gebruikt een nieuwe cacheversie.
 
-Na publicatie:
-1. Open de webpagina in Safari op de iPad.
-2. Kies Deel > Zet op beginscherm om een app-icoon te maken.
-3. Open de app via dat icoon.
+Mogelijkheden:
+- Machtigingen toevoegen, wijzigen en wissen.
+- Klantnummer, klantnaam, e-mailadres, soort machtiging, aanvraagdatum, vennoot en status registreren.
+- Status Actief (groen) of Aangevraagd (rood).
+- Opvolgsignaal zodra een aanvraag twee maanden openstaat.
+- Zoeken, filteren op status en vennoot, sorteren op klantnummer of datum.
+- Soorten machtigingen en vennoten beheren.
+- Kolomvolgorde aanpassen.
+- E-mailtekst aanpassen; per openstaande aanvraag een e-mail voorbereiden, ontvanger controleren/wijzigen, onderwerp en bericht controleren/wijzigen en als concept openen in het e-mailprogramma. De gebruiker verstuurt zelf.
+- Reservekopie downloaden en terugzetten.
 
-Let op:
-- De gegevens worden lokaal in de browser op het betreffende apparaat bewaard.
-- Er is geen synchronisatie tussen apparaten of collega's.
-- Maak regelmatig een reservekopie via de knop in het programma.
-- De Mail-knop opent de mail-app; je controleert en verzendt de e-mail zelf.
-- Gebruik alleen fictieve of niet-gevoelige testgegevens.
+BELANGRIJK:
+- Dit is een lokale testversie. Gegevens worden in de browser van dit apparaat bewaard.
+- Er is geen automatische synchronisatie tussen iPad, computer of collega's.
+- Er is geen automatische e-mailverzending. De knop ‘E-mail voorbereiden’ opent eerst een controle- en bewerkingsstap en daarna een concept in je e-mailprogramma. Je verstuurt zelf.
+- De melding na twee maanden verschijnt wanneer je de website opent.
+- Gebruik alleen fictieve testgegevens. Voor echte klantgegevens zijn een beveiligde database, gebruikersbeheer, toegangsrechten en back-ups nodig.
