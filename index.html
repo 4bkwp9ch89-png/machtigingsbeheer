@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#174b78"><link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Machtigingsbeheer"><title>Machtigingsbeheer – testversie</title>
+<style>
+:root{--navy:#123b61;--blue:#1d5b91;--pale:#eaf2f9;--bg:#f3f6fa;--ink:#1e2936;--muted:#68798a;--line:#dfe7ef;--green:#167647;--greenbg:#e8f6ee;--red:#bd343e;--redbg:#fff0f0;--amber:#95600b;--amberbg:#fff5df}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+header{background:var(--navy);color:white;padding:15px max(18px,calc((100% - 1250px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-size:20px;font-weight:750}.brand span{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#ffffff20;margin-right:9px}.topnote{font-size:12px;color:#d8e6f2}
+main{max-width:1250px;margin:auto;padding:25px 18px 55px}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.head h1{margin:0;color:#173d60;font-size:26px}.sub{color:var(--muted);font-size:13px;margin-top:4px}.btn{border:1px solid #d0dce7;border-radius:8px;background:white;color:#31536f;padding:9px 13px;font-weight:650}.btn.primary{background:var(--blue);border-color:var(--blue);color:white}.btn.danger{color:var(--red);border-color:#efc9cc}.btn.small{padding:6px 9px;font-size:12px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.card{background:white;border:1px solid var(--line);border-radius:12px;padding:15px}.card .label{font-size:12px;color:var(--muted)}.card strong{display:block;font-size:27px;color:#173d60;margin-top:4px}.warning{padding:12px 14px;border:1px solid #f0dfb9;border-radius:9px;background:var(--amberbg);color:#79500e;margin:0 0 17px;font-size:13px}.panel{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}.panelhead{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}.panelhead h2{margin:0;font-size:16px;color:#173d60}.tools{padding:12px 16px;display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);background:#fbfcfe}.tools input,.tools select{border:1px solid #d8e2eb;border-radius:8px;padding:9px;background:white;color:#344b60}.tools input{flex:1;min-width:190px}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:850px}th,td{text-align:left;padding:12px 13px;border-bottom:1px solid #edf1f5;font-size:13px;white-space:nowrap}th{font-size:11px;color:#718295;text-transform:uppercase;letter-spacing:.4px}tbody tr:last-child td{border:0}.pill{display:inline-block;border-radius:30px;padding:4px 8px;font-size:11px;font-weight:700}.active{background:var(--greenbg);color:var(--green)}.pending{background:var(--redbg);color:var(--red)}.late{background:var(--amberbg);color:var(--amber);margin-left:4px}.actions{display:flex;gap:5px}.empty{text-align:center;padding:30px;color:var(--muted)}.foot{font-size:11px;color:#8190a0;padding:12px 16px;border-top:1px solid var(--line)}
+.modal{position:fixed;inset:0;background:#10283e88;display:none;align-items:center;justify-content:center;padding:15px;z-index:5}.modal.open{display:flex}.dialog{width:min(620px,100%);max-height:92vh;overflow:auto;background:white;border-radius:14px;box-shadow:0 20px 60px #0003}.dhead,.dfoot{padding:15px 19px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.dhead h2{margin:0;color:#173d60;font-size:18px}.dfoot{border:0;border-top:1px solid var(--line);justify-content:flex-end;gap:8px}.form{padding:18px 19px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:650;color:#52677b}.field input,.field select{
+ padding:11px 10px;border:1px solid #c7d5e2;border-radius:8px;width:100%;
+ background-color:#ffffff !important;color:#172b3d !important;
+ -webkit-text-fill-color:#172b3d !important;caret-color:#174b78;
+ opacity:1 !important;font-size:16px;line-height:1.35;
+}
+.field input::placeholder{color:#7b8998 !important;-webkit-text-fill-color:#7b8998 !important;opacity:1}
+.field input:focus,.field select:focus,.tools input:focus,.tools select:focus{
+ outline:2px solid #8bb8dc;outline-offset:1px;border-color:#3979ad;
+}
+input,select,textarea{color:#172b3d;-webkit-text-fill-color:#172b3d;opacity:1}
+input:-webkit-autofill{-webkit-text-fill-color:#172b3d !important;box-shadow:0 0 0 1000px #ffffff inset}.settings{padding:18px;display:grid;gap:18px}.field textarea{padding:10px;border:1px solid #d8e2eb;border-radius:8px;width:100%;min-height:110px;font:14px/1.45 inherit;color:#172b3d}.templateitem{border:1px solid var(--line);border-radius:8px;padding:9px;margin:6px 0;display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px}.settings h3{font-size:14px;margin:0 0 7px;color:#234968}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chip{border:1px solid var(--line);border-radius:20px;padding:5px 8px;font-size:12px}.chip button{border:0;background:none;color:var(--red);margin-left:5px}.addline{display:flex;gap:7px}.addline input{flex:1;min-width:0;border:1px solid #d8e2eb;border-radius:8px;padding:9px}.colrow{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin:5px 0;font-size:13px}.colrow button{border:1px solid var(--line);background:white;border-radius:5px;padding:3px 7px;margin-left:4px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#173d60;color:white;padding:11px 16px;border-radius:9px;display:none;z-index:8;font-size:13px}.toast.show{display:block}
+@media(max-width:700px){main{padding:18px 11px 40px}.cards{grid-template-columns:repeat(2,1fr);gap:8px}.card{padding:12px}.card strong{font-size:23px}.head{align-items:flex-start;flex-direction:column}.head .btn{width:100%}.panelhead{padding:13px}.form{grid-template-columns:1fr}.field.full{grid-column:auto}.topnote{display:none}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span>✓</span>Machtigingsbeheer</div><div class="topnote">Persoonlijke testversie · lokaal opgeslagen</div></header>
+<main>
+ <div class="head"><div><h1>Mijn machtigingen</h1><div class="sub">Beheer aanvragen, statussen en opvolging op één plek.</div></div><button class="btn primary" id="addBtn">＋ Nieuwe machtiging</button></div>
+ <section class="cards">
+  <div class="card"><div class="label">Totaal</div><strong id="total">0</strong></div>
+  <div class="card"><div class="label">Actief</div><strong id="activeCount">0</strong></div>
+  <div class="card"><div class="label">Aangevraagd</div><strong id="pendingCount">0</strong></div>
+  <div class="card"><div class="label">Opvolgen na 2 maanden</div><strong id="lateCount">0</strong></div>
+ </section>
+ <div class="warning" id="warning" hidden></div>
+ <section class="panel">
+  <div class="panelhead"><h2>Machtigingsregister</h2><div class="actions"><button class="btn small" id="settingsBtn">⚙ Instellingen</button><button class="btn small" id="backupBtn">Reservekopie</button></div></div>
+  <div class="tools"><input id="search" placeholder="Zoek klantnummer, naam of machtiging…"><select id="filterStatus"><option value="">Alle statussen</option><option>Aangevraagd</option><option>Actief</option></select><select id="filterPartner"><option value="">Alle vennoten</option></select><select id="sort"><option value="asc">Klantnummer ↑</option><option value="desc">Klantnummer ↓</option><option value="date">Nieuwste aanvraag</option></select></div>
+  <div class="tablewrap"><table><thead><tr id="tableHead"></tr></thead><tbody id="tableBody"></tbody></table></div>
+  <div class="foot">Je gegevens worden bewaard in deze browser op dit apparaat. Maak regelmatig een reservekopie.</div>
+ </section>
+</main>
+<div class="modal" id="entryModal"><div class="dialog"><div class="dhead"><h2 id="entryTitle">Nieuwe machtiging</h2><button class="btn small" data-close="entryModal">Sluiten ✕</button></div>
+<form id="entryForm"><div class="form">
+ <div class="field"><label>Klantnummer *</label><input id="fNo" required></div>
+ <div class="field"><label>Naam klant *</label><input id="fName" required></div>\n <div class="field full"><label>E-mailadres klant</label><input id="fEmail" type="email" placeholder="klant@voorbeeld.nl"></div>
+ <div class="field"><label>Soort machtiging *</label><select id="fType" required></select></div>
+ <div class="field"><label>Vennoot *</label><select id="fPartner" required></select></div>
+ <div class="field"><label>Datum aangevraagd *</label><input id="fDate" type="date" required></div>
+ <div class="field"><label>Status</label><select id="fStatus"><option>Aangevraagd</option><option>Actief</option></select></div>
+ </div><div class="dfoot"><button type="button" class="btn" data-close="entryModal">Annuleren</button><button class="btn primary" type="submit">Opslaan</button></div></form></div></div>
+<div class="modal" id="settingsModal"><div class="dialog"><div class="dhead"><h2>Instellingen beheren</h2><button class="btn small" data-close="settingsModal">Sluiten ✕</button></div><div class="settings">
+ <section><h3>Soorten machtigingen</h3><div class="chips" id="typesList"></div><div class="addline"><input id="newType" placeholder="Nieuwe machtigingsoort"><button class="btn small" id="addType">Toevoegen</button></div></section>
+ <section><h3>Vennoten</h3><div class="chips" id="partnersList"></div><div class="addline"><input id="newPartner" placeholder="Naam vennoot"><button class="btn small" id="addPartner">Toevoegen</button></div></section>
+ <section><h3>E-mail sjablonen voor klantherinneringen</h3>
+ <div id="templatesList"></div>
+ <div class="field"><label>Naam sjabloon</label><input id="templateName" placeholder="Bijv. Vriendelijke herinnering"></div>
+ <div class="field"><label>Onderwerp</label><input id="templateSubject" placeholder="Herinnering machtiging {{klantnummer}}"></div>
+ <div class="field"><label>Tekst e-mail</label><textarea id="templateBody" placeholder="Beste {{naam}},&#10;&#10;We willen je vriendelijk herinneren aan...&#10;&#10;Met vriendelijke groet,"></textarea></div>
+ <div class="actions"><button class="btn small primary" id="saveTemplate">Sjabloon opslaan</button><button class="btn small" id="clearTemplate">Leegmaken</button></div>
+ <div class="sub">Je kunt gebruiken: {{naam}}, {{klantnummer}}, {{machtiging}}, {{vennoot}}.</div>
+ </section>
+ <section><h3>Kolomvolgorde</h3><div id="columnList"></div><div class="sub">Gebruik de pijlen om de volgorde van de tabel aan te passen.</div></section>
+ <section><h3>Reservekopie terugzetten</h3><input type="file" id="importFile" accept="application/json"></section>
+ </div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+const $=id=>document.getElementById(id), KEY="machtigingsbeheer_local_v1";
+const today=new Date();const iso=d=>{let x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+const sample=[
+{id:1,no:"100128",name:"Noorderlicht Installatie BV",type:"Bankmachtiging",date:"2026-09-14",partner:"Van Dijk",status:"Aangevraagd"},
+{id:2,no:"100245",name:"De Groene Tuin VOF",type:"SEPA-machtiging",date:"2026-11-03",partner:"Jansen",status:"Actief"},
+{id:3,no:"100317",name:"Studio Rivier",type:"Belastingdienst",date:"2026-08-12",partner:"Bakker",status:"Aangevraagd"},
+{id:4,no:"100402",name:"Molenhoek Transport",type:"Bankmachtiging",date:"2026-10-21",partner:"Van Dijk",status:"Actief"},
+{id:5,no:"100518",name:"Fictief Horeca Collectief",type:"SEPA-machtiging",date:"2026-07-02",partner:"Jansen",status:"Aangevraagd"}
+];
+const defaults={records:sample,types:["Bankmachtiging","SEPA-machtiging","Belastingdienst"],partners:["Van Dijk","Jansen","Bakker"],columns:["no","name","email","type","date","partner","status"],templates:[{id:1,name:"Vriendelijke herinnering",subject:"Herinnering machtiging {{klantnummer}}",body:"Beste {{naam}},\n\nWe willen je vriendelijk herinneren aan de nog openstaande machtiging: {{machtiging}}.\n\nZou je deze willen afronden?\n\nMet vriendelijke groet,"}]};
+let state;try{state=JSON.parse(localStorage.getItem(KEY))||structuredClone(defaults)}catch(e){state=structuredClone(defaults)}
+state.templates ||= [{id:1,name:"Vriendelijke herinnering",subject:"Herinnering machtiging {{klantnummer}}",body:"Beste {{naam}},\\n\\nWe willen je vriendelijk herinneren aan de nog openstaande machtiging: {{machtiging}}.\\n\\nZou je deze willen afronden?\\n\\nMet vriendelijke groet,"}];state.records.forEach(r=>{r.email ||= "";});if(!state.columns.includes("email"))state.columns.splice(2,0,"email");
+const labels={no:"Klantnummer",name:"Naam klant",email:"E-mailadres",type:"Machtiging",date:"Datum aangevraagd",partner:"Vennoot",status:"Status"};
+let editing=null;
+function persist(){localStorage.setItem(KEY,JSON.stringify(state))}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function addMonths(date,n){let d=new Date(date+"T12:00:00");let day=d.getDate();d.setMonth(d.getMonth()+n);if(d.getDate()<day)d.setDate(0);return d}
+function isLate(r){return r.status==="Aangevraagd"&&today>=addMonths(r.date,2)}
+function fmt(s){return new Date(s+"T12:00:00").toLocaleDateString("nl-NL")}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2400)}
+function refreshSelects(){let old=$("filterPartner").value;$("filterPartner").innerHTML='<option value="">Alle vennoten</option>'+state.partners.map(p=>`<option>${esc(p)}</option>`).join("");$("filterPartner").value=state.partners.includes(old)?old:"";$("fPartner").innerHTML=state.partners.map(p=>`<option>${esc(p)}</option>`).join("");$("fType").innerHTML=state.types.map(t=>`<option>${esc(t)}</option>`).join("")}
+function render(){
+ let a=state.records.filter(r=>r.status==="Actief").length,l=state.records.filter(isLate).length;
+ $("total").textContent=state.records.length;$("activeCount").textContent=a;$("pendingCount").textContent=state.records.length-a;$("lateCount").textContent=l;
+ $("warning").hidden=!l;$("warning").textContent=l?l+" aanvraag/aanvragen staan al twee maanden of langer op Aangevraagd. Controleer deze in het register.":"";
+ let q=$("search").value.toLowerCase(),st=$("filterStatus").value,pa=$("filterPartner").value,sort=$("sort").value;
+ let list=state.records.filter(r=>(!st||r.status===st)&&(!pa||r.partner===pa)&&(!q||[r.no,r.name,r.type,r.partner].join(" ").toLowerCase().includes(q)));
+ list.sort((x,y)=>sort==="date"?y.date.localeCompare(x.date):sort==="desc"?y.no.localeCompare(x.no,undefined,{numeric:true}):x.no.localeCompare(y.no,undefined,{numeric:true}));
+ $("tableHead").innerHTML=state.columns.map(c=>`<th>${labels[c]}</th>`).join("")+"<th>Acties</th>";
+ $("tableBody").innerHTML=list.length?list.map(r=>"<tr>"+state.columns.map(c=>`<td>${c==="status"?`<span class="pill ${r.status==="Actief"?"active":"pending"}">${r.status}</span>${isLate(r)?'<span class="pill late">Opvolgen</span>':""}`:c==="date"?fmt(r.date):c==="no"?`<strong>${esc(r.no)}</strong>`:esc(r[c])}</td>`).join("")+`<td><div class="actions"><button class="btn small" data-edit="${r.id}">Wijzig</button>${r.status==="Aangevraagd"&&r.email?`<button class="btn small" data-mail="${r.id}">Mail</button>`:""}<button class="btn small danger" data-delete="${r.id}">Wis</button></div></td></tr>`).join(""):'<tr><td colspan="'+(state.columns.length+1)+'" class="empty">Geen machtigingen gevonden.</td></tr>';
+}
+function openEntry(r){editing=r?.id??null;$("entryTitle").textContent=r?"Machtiging wijzigen":"Nieuwe machtiging";refreshSelects();$("fNo").value=r?.no||"";$("fName").value=r?.name||"";$("fEmail").value=r?.email||"";$("fType").value=r?.type||state.types[0];$("fPartner").value=r?.partner||state.partners[0];$("fDate").value=r?.date||iso(today);$("fStatus").value=r?.status||"Aangevraagd";$("entryModal").classList.add("open")}
+$("addBtn").onclick=()=>openEntry();document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>$(b.dataset.close).classList.remove("open"));
+$("entryForm").onsubmit=e=>{e.preventDefault();let r={id:editing??Date.now(),no:$("fNo").value.trim(),name:$("fName").value.trim(),email:$("fEmail").value.trim(),type:$("fType").value,partner:$("fPartner").value,date:$("fDate").value,status:$("fStatus").value};if(editing)state.records=state.records.map(x=>x.id===editing?r:x);else state.records.push(r);persist();render();$("entryModal").classList.remove("open");toast(editing?"Machtiging gewijzigd":"Machtiging opgeslagen")};
+let mailRecord=null;
+function fillMailModal(r){mailRecord=r;let options=state.templates.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join("");$("mailTo").value=r.email;$("mailTemplate").innerHTML=options;applyTemplate();$("emailModal").classList.add("open")}
+function applyTemplate(){if(!mailRecord)return;let t=state.templates.find(x=>x.id==$("mailTemplate").value)||state.templates[0];if(!t)return;const replace=s=>s.replace(/{{(naam|klantnummer|machtiging|vennoot)}}/g,(_,k)=>({"naam":mailRecord.name,"klantnummer":mailRecord.no,"machtiging":mailRecord.type,"vennoot":mailRecord.partner}[k]||""));$("mailSubject").value=replace(t.subject);$("mailBody").value=replace(t.body)}
+$("mailTemplate").onchange=applyTemplate;
+$("launchMail").onclick=()=>{if(!mailRecord)return;let url="mailto:"+encodeURIComponent(mailRecord.email)+"?subject="+encodeURIComponent($("mailSubject").value)+"&body="+encodeURIComponent($("mailBody").value);window.location.href=url;$("emailModal").classList.remove("open")};
+$("tableBody").onclick=e=>{let edit=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]"),mail=e.target.closest("[data-mail]");if(mail){let r=state.records.find(x=>x.id==mail.dataset.mail);fillMailModal(r)};if(edit){let r=state.records.find(x=>x.id==edit.dataset.edit);openEntry(r)}if(del&&confirm("Deze machtiging verwijderen?")){state.records=state.records.filter(x=>x.id!=del.dataset.delete);persist();render();toast("Machtiging verwijderd")}};
+["search","filterStatus","filterPartner","sort"].forEach(id=>$(id).addEventListener("input",render));
+$("settingsBtn").onclick=()=>{$("settingsModal").classList.add("open");renderSettings()};
+function renderSettings(){
+ $("typesList").innerHTML=state.types.map((x,i)=>`<span class="chip">${esc(x)} <button data-rtype="${i}" title="Verwijderen">×</button></span>`).join("");
+ $("partnersList").innerHTML=state.partners.map((x,i)=>`<span class="chip">${esc(x)} <button data-rpartner="${i}" title="Verwijderen">×</button></span>`).join("");
+ $("templatesList").innerHTML=state.templates.map(t=>`<div class="templateitem"><span><strong>${esc(t.name)}</strong><br><span class="sub">${esc(t.subject)}</span></span><span><button class="btn small" data-etemplate="${t.id}">Bewerk</button><button class="btn small danger" data-dtemplate="${t.id}">Wis</button></span></div>`).join("");
+ $("columnList").innerHTML=state.columns.map((x,i)=>`<div class="colrow"><span>${labels[x]}</span><span><button data-up="${i}" ${i===0?"disabled":""}>↑</button><button data-down="${i}" ${i===state.columns.length-1?"disabled":""}>↓</button></span></div>`).join("");
+}
+$("addType").onclick=()=>{let v=$("newType").value.trim();if(v&&!state.types.includes(v)){state.types.push(v);$("newType").value="";persist();refreshSelects();renderSettings()}};
+$("addPartner").onclick=()=>{let v=$("newPartner").value.trim();if(v&&!state.partners.includes(v)){state.partners.push(v);$("newPartner").value="";persist();refreshSelects();renderSettings()}};
+let editingTemplate=null;
+$("saveTemplate").onclick=()=>{let name=$("templateName").value.trim(),subject=$("templateSubject").value.trim(),body=$("templateBody").value;if(!name||!subject||!body.trim()){alert("Vul de naam, het onderwerp en de e-mailtekst in.");return}if(editingTemplate){state.templates=state.templates.map(t=>t.id===editingTemplate?{...t,name,subject,body}:t)}else state.templates.push({id:Date.now(),name,subject,body});editingTemplate=null;$("templateName").value=$("templateSubject").value=$("templateBody").value="";persist();renderSettings();toast("E-mail sjabloon opgeslagen")};
+$("clearTemplate").onclick=()=>{editingTemplate=null;$("templateName").value=$("templateSubject").value=$("templateBody").value=""};
+$("settingsModal").onclick=e=>{let et=e.target.closest("[data-etemplate]"),dt=e.target.closest("[data-dtemplate]");if(et){let t=state.templates.find(x=>x.id==et.dataset.etemplate);editingTemplate=t.id;$("templateName").value=t.name;$("templateSubject").value=t.subject;$("templateBody").value=t.body}if(dt&&confirm("Dit e-mail sjabloon verwijderen?")){state.templates=state.templates.filter(t=>t.id!=dt.dataset.dtemplate);persist();renderSettings()}
+let t=e.target.closest("[data-rtype]"),p=e.target.closest("[data-rpartner]"),u=e.target.closest("[data-up]"),d=e.target.closest("[data-down]");if(t){let v=state.types.splice(+t.dataset.rtype,1)[0];if(!state.types.length)state.types.push("Overige");state.records.forEach(r=>{if(r.type===v)r.type=state.types[0]});persist();refreshSelects();renderSettings();render()}if(p){let v=state.partners.splice(+p.dataset.rpartner,1)[0];if(!state.partners.length)state.partners.push("Nog toe te wijzen");state.records.forEach(r=>{if(r.partner===v)r.partner=state.partners[0]});persist();refreshSelects();renderSettings();render()}if(u||d){let i=+(u||d).dataset[u?"up":"down"],j=u?i-1:i+1;[state.columns[i],state.columns[j]]=[state.columns[j],state.columns[i]];persist();renderSettings();render()}};
+$("backupBtn").onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="machtigingsbeheer-reservekopie.json";a.click();URL.revokeObjectURL(url);toast("Reservekopie gedownload")};
+$("importFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let s=JSON.parse(await f.text());if(!Array.isArray(s.records)||!Array.isArray(s.types)||!Array.isArray(s.partners))throw Error();state=s;persist();refreshSelects();render();renderSettings();toast("Reservekopie teruggezet")}catch(err){alert("Dit bestand lijkt geen geldige reservekopie van Machtigingsbeheer.")}e.target.value=""};
+refreshSelects();render();
+})();
+</script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+}
+</script>
+</body></html>

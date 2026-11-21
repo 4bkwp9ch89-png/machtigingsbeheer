@@ -1,0 +1,10 @@
+{
+  "name": "Machtigingsbeheer",
+  "short_name": "Machtigingen",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6fa",
+  "theme_color": "#174b78",
+  "icons": []
+}

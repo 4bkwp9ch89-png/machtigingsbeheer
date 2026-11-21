@@ -1,0 +1,20 @@
+Machtigingsbeheer – kosteloos testpakket
+=======================================
+
+Dit pakket is voorbereid om gratis statisch te hosten, bijvoorbeeld met GitHub Pages.
+Het is nog NIET online gepubliceerd; er is nog geen openbare webadres.
+
+Publiceren vereist een eigen gratis hostingaccount en een eenmalige upload/instelling.
+Ik kan niet inloggen of een account namens jou aanmaken.
+
+Na publicatie:
+1. Open de webpagina in Safari op de iPad.
+2. Kies Deel > Zet op beginscherm om een app-icoon te maken.
+3. Open de app via dat icoon.
+
+Let op:
+- De gegevens worden lokaal in de browser op het betreffende apparaat bewaard.
+- Er is geen synchronisatie tussen apparaten of collega's.
+- Maak regelmatig een reservekopie via de knop in het programma.
+- De Mail-knop opent de mail-app; je controleert en verzendt de e-mail zelf.
+- Gebruik alleen fictieve of niet-gevoelige testgegevens.
